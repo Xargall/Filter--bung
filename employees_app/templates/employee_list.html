@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staff Filter App</title>
+    <link rel="stylesheet" href="{% static 'employees_app/style.css' %}">
+  </head>
+  <body>
+    <h1>Staff Filter App</h1>
+    <h2>Aufgaben:</h2>
+    <ol>
+      <li>Zeige hier im Template eine Liste aller Mitarbeiter, ihrer Abteilung und ihres Gehalts an.</li>
+      <li>Zeige eine Liste der Namen aller Mitarbeiter, die mehr als 3000 € im Monat verdienen.</li>
+      <li>Wie hoch ist die Anzahl der Mitarbeiter, die 5000 € im Monat oder mehr verdienen?</li>
+    </ol>
+    <h3>Zusatzaufgaben:</h3>
+    <ol start="4">
+      <li>Wie hoch ist das Durchschnittsgehalt aller Mitarbeiter im Sales-Team? Zeige das Ergebnis auf zwei Nachkommastellen gerundet an.</li>
+      <li>Welche Mitarbeiter wurden vor dem 1. Januar 2022 eingestellt und gehören NICHT zur Abteilung HR?</li>
+    </ol>
+    <h2 style="color:red">Antworten:</h2>
+    <ol>
+      <li>
+        Mitarbeiterliste
+        <ul>
+          {% for employee in employees %}
+            <li>{{ employee.name }}: Abteilung: {{ employee.department }} - Gehalt: {{ employee.salary }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>
+        Mitarbeiter, die mehr als 3000€ im Monat verdienen:
+        <ul>
+          {% for high_earner in high_earners %}
+            <li>{{ high_earner.name }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>
+        Anzahl der Mitarbeiter, die 5000€ im Monat oder mehr verdienen:
+        <p>{{ high_earners_count }}</p>
+      </li>
+      <li>
+        Durchschnittsgehalt im Sales-Team:
+        <p>{{ avg_salary }}</p>
+      </li>
+      <li>
+        Mitarbeiter, die vor dem 01.Januar.2022 einestellt wurden und nicht im HR_Team sind:
+        <ul>
+          {% for hired_employee in hired_employees %}
+            <li>{{ hired_employee.name }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ol>
+    <!-- Hier eure Antworten rendern -->
+  </body>
+</html>
